@@ -25,18 +25,24 @@ struct ContentView: View {
                 }.buttonStyle(.glass)
                 
                 if !notes.isEmpty {
-                    ScrollView {
+                    List {
                         ForEach(notes) {note in
                             VStack(alignment: .leading) {
                                 Text(note.date)
                                     .font(.subheadline)
                                     .foregroundStyle(.secondary)
+                                    .padding(.bottom, 2)
                                 Text(note.title)
                                     .font(.title)
                                 Divider()
                                 Text(note.content)
                             }
                             .padding()
+                        }
+                        .onDelete {indexSet in
+                            withAnimation {
+                                notes.remove(atOffsets: indexSet)
+                            }
                         }
                     }
                     .textSelection(.enabled)
@@ -76,6 +82,7 @@ struct ContentView: View {
         }
         .padding()
         .frame(width: 450, height: 200)
+        .background(Color.white)
     }
 }
 
