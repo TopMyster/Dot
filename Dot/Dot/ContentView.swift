@@ -79,7 +79,7 @@ struct ContentView: View {
                     ScrollView {
                         TextEditor(text: $content)
                             .font(.custom("default", size: 15))
-                            .background(.clear)
+                            .scrollContentBackground(.hidden) 
                     }
                 }.padding()
             }
