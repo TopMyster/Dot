@@ -35,11 +35,11 @@ struct ContentView: View {
                                     .font(.title)
                                 Divider()
                                 Text(note.content)
-                                    .textSelection(.enabled)
                             }
                             .padding()
                         }
                     }
+                    .textSelection(.enabled)
                 } else {
                     Text("No notes yet...")
                         .foregroundStyle(.secondary)
