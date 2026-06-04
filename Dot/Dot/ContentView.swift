@@ -69,6 +69,8 @@ struct ContentView: View {
                         .textFieldStyle(.plain)
                     Button("Save", systemImage: "bookmark") {
                         notes.append(Note(title: title, content: content))
+                        title = ""
+                        content = ""
                         withAnimation {
                             listNotes = true
                         }
