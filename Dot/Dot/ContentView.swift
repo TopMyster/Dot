@@ -22,7 +22,7 @@ struct ContentView: View {
                     withAnimation {
                         listNotes = false
                     }
-                }.buttonStyle(.glass)
+                }.buttonStyle(.bordered)
                 
                 if !notes.isEmpty {
                     List {
@@ -53,20 +53,11 @@ struct ContentView: View {
                 }
                 
             } else {
-                VStack {
+                HStack {
                     Text(Date().formatted(date: .abbreviated, time: .shortened))
                         .font(.subheadline)
                         .foregroundStyle(.secondary)
-                }
-                .padding()
-                
-                VStack {
-                    TextField("Title", text: $title)
-                        .font(.title)
-                        .textFieldStyle(.plain)
-                    Divider()
-                    TextField("Content", text: $content)
-                        .textFieldStyle(.plain)
+                    Spacer()
                     Button("Save", systemImage: "bookmark") {
                         notes.append(Note(title: title, content: content))
                         title = ""
@@ -77,13 +68,24 @@ struct ContentView: View {
                     }
                     .buttonStyle(.bordered)
                     .disabled(title.isEmpty || content.isEmpty ? true : false)
-                    
-
+                }
+                .padding(.horizontal, 15)
+                
+                VStack {
+                    TextField("Title", text: $title)
+                        .font(.title)
+                        .textFieldStyle(.plain)
+                    Divider()
+                    ScrollView {
+                        TextEditor(text: $content)
+                            .frame(height: .infinity)
+                            .font(.custom("default", size: 15))
+                    }
                 }.padding()
             }
         }
         .padding()
-        .frame(width: 450, height: 200)
+        .frame(width: 450, height: 250)
     }
 }
 
