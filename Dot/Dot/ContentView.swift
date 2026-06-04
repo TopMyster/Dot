@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AppKit
 
 struct ContentView: View {
     @State var notes: [Note] = []
@@ -32,8 +33,19 @@ struct ContentView: View {
                                     .font(.subheadline)
                                     .foregroundStyle(.secondary)
                                     .padding(.bottom, 2)
-                                Text(note.title)
-                                    .font(.title)
+                                HStack {
+                                    Text(note.title)
+                                        .font(.title)
+                                    Spacer()
+                                    Button {
+                                        let pasteboard = NSPasteboard.general
+                                        pasteboard.clearContents()
+                                        pasteboard.setString(note.content, forType: .string)
+                                    } label: {
+                                        Image(systemName: "document.on.document")
+                                    }
+                                    .help("Copy Text")
+                                }
                                 Divider()
                                 Text(note.content)
                             }
