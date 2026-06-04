@@ -82,7 +82,6 @@ struct ContentView: View {
         }
         .padding()
         .frame(width: 450, height: 200)
-        .background(Color.white)
     }
 }
 
