@@ -78,8 +78,8 @@ struct ContentView: View {
                     Divider()
                     ScrollView {
                         TextEditor(text: $content)
-                            .frame(height: .infinity)
                             .font(.custom("default", size: 15))
+                            .background(.clear)
                     }
                 }.padding()
             }
